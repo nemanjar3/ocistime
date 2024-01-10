@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: url('./background-index.jpg') center/cover no-repeat; 
+  background-position: top center; /* Move the background image a bit lower */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto;
+  margin-top: 2vh;
+  padding: 20px;
+  color: #fff;
+  background-color: #E2B2A0;
+  border-radius: 10px;
+  position: absolute;
+  left: 20%;
+  transform: translateX(-50%);
+  bottom: 25%;
+  float: left;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 3em;
+  color: #3498db; /* Set the header color to a light blue */
+}
+
+.content {
+  display: flex;
+  float: left;
+}
+
+.text-container {
+  background-color: #E2B2A0; /* Set the background color */
+  padding: 20px; /* Add padding for spacing */
+  border-radius: 10px; /* Add border-radius for a modern look */
+  margin-top: 20px; /* Add margin at the top for separation */
+  margin: 0;
+  float: left;
+}
+
+.text {
+  max-width: 400px; /* Adjust the max-width based on your design preferences */
+}
+
+h2 {
+  font-size: 2em;
+  color: #fff; /* Set the sub-header text color to white */
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #fff; /* Set the paragraph text color to white */
+  line-height: 1.6; /* Improve line spacing for better readability */
+}
+
+/* Style for the "Ocisti.me" element */
+.ocisti-me {
+  color: #3498db; /* Match the header color */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.button-container {
+  text-align: center;
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  margin-top: 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #a0d0e2; /* Updated button color */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 0 10px;
+  border: 2px solid #a0d0e2;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #297fb8; /* Darker color on hover */
+  transform: scale(1.05); /* Slight scale on hover for a modern touch */
+}
