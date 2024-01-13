@@ -12,11 +12,12 @@ namespace web.Models
         public string? FirstMidName { get; set; }
         public string? Mail { get; set; }
         public string? Password { get; set; }
+        public int JobID { get; set; }
 
+        // Navigation property for the Jobs table
+        public Job Job { get; set; }
 
-        //dodati ICollection na usluga, istorija usluga, ocjene
-        //public DateTime EnrollmentDate { get; set; }
-
-        //public ICollection<Enrollment> Enrollments { get; set; }
+        // Uncomment and modify according to your related entities
+        // public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

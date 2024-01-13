@@ -24,7 +24,7 @@ namespace web.Controllers
         {
               return _context.AppUser != null ? 
                           View(await _context.AppUser.ToListAsync()) :
-                          Problem("Entity set 'AzureContext.AppUser'  is null.");
+                          Problem("Entity set 'OcistimeContext.AppUser'  is null.");
         }
 
         // GET: AppUser/Details/5

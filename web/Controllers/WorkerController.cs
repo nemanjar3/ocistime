@@ -22,9 +22,17 @@ namespace web.Controllers
         // GET: Worker
         public async Task<IActionResult> Index()
         {
-              return _context.Worker != null ? 
-                          View(await _context.Worker.ToListAsync()) :
-                          Problem("Entity set 'AzureContext.Worker'  is null.");
+        if (_context.Worker == null)
+        {
+            return Problem("Entity set 'AzureContext.Worker' is null.");
+        }
+
+        // Include the Job data for each worker
+        var workersWithJobs = await _context.Worker
+            .Include(w => w.Job) // Make sure to include the Job data
+            .ToListAsync();
+
+        return View(workersWithJobs);
         }
 
         // GET: Worker/Details/5

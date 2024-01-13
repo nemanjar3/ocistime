@@ -12,7 +12,7 @@ namespace web.Data
 
         public DbSet<ApplicationUser>? AppUser { get; set; }
         public DbSet<Worker>? Worker { get; set; }
-        public DbSet<User>? User { get; set; }
+        public DbSet<Review>? Review { get; set; }
 
 
 
@@ -23,7 +23,7 @@ namespace web.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             modelBuilder.Entity<Worker>().ToTable("Worker");
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<Review>().ToTable("Review");
            
 
         }
