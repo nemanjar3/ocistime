@@ -27,5 +27,11 @@ namespace web.Data
            
 
         }
+
+
+
+
+
+        public DbSet<web.Models.Job>? Job { get; set; }
     }
 }

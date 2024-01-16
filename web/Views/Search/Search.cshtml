@@ -1,47 +1,7 @@
-<!-- @{
+ @{
     ViewData["Title"] = "Search";
 }
 
-<div class="text-center">
-    <h2 class="display-4">Ocisti.me</h2>
-    <p>First Local Services Platform in Montenegro.</p>
-</div> -->
-<style>
-    body {
-    font-family: Arial, sans-serif;
-}
-
-.search-container {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
 
 </style>
 
@@ -52,11 +12,67 @@ button:hover {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Search - Ocisti.me</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .search-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .search-container h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="search-container">
+        <h2>Ocisti.me</h2>
+        <p>Find your local service</p>
         <form asp-controller="Search" asp-action="SearchResults" method="get">
             <input type="text" name="JobName" placeholder="Enter the wanted job" />
             <button type="submit">Search</button>

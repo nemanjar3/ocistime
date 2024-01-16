@@ -3,31 +3,6 @@
 @{
     ViewData["Title"] = "Workers";
 }
-
-<h1>Workers</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<div class="worker-cards-container">
-    @foreach (var item in Model) {
-        <div class="worker-card">
-            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo"/> <!-- Replace with actual image path -->
-            <div class="worker-info">
-                <div class="worker-name">@item.FirstMidName @item.LastName</div>
-                <div class="worker-job">@item.Job.JobName</div>
-                <div class="worker-email">@item.Mail</div>
-            </div>
-            <div class="worker-actions">
-                <a asp-action="Edit" asp-route-id="@item.WorkerID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WorkerID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WorkerID">Delete</a>
-            </div>
-        </div>
-    }
-</div>
-
 <style>
     .worker-cards-container {
         display: flex;
@@ -71,4 +46,33 @@
     .worker-actions a:hover {
         text-decoration: underline;
     }
+    button:hover {
+            background-color: #0056b3;
+    }
 </style>
+
+<h1>Workers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="worker-cards-container">
+    @foreach (var item in Model) {
+        <div class="worker-card">
+            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo"/> <!-- Replace with actual image path -->
+            <div class="worker-info">
+                <div class="worker-name">@item.FirstMidName @item.LastName</div>
+                <div class="worker-email">@item.WorkerID</div>
+                <div class="worker-job">@item.Job.JobName</div>
+                <div class="worker-email">@item.Mail</div>
+            </div>
+            <div class="worker-actions">
+                <a asp-action="Edit" asp-route-id="@item.WorkerID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WorkerID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WorkerID">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+

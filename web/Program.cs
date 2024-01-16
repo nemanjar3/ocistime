@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using web.Data;
 using Microsoft.AspNetCore.Identity;
 using web.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AzureContext");
@@ -12,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AzureContext>(options =>
             options.UseSqlServer(connectionString));
 
+builder.Services.AddSwaggerGen();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AzureContext>();
@@ -31,6 +33,11 @@ app.UseStaticFiles();
 
 app.MapRazorPages();
 
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
 
 app.UseRouting();
 app.UseAuthentication();;
