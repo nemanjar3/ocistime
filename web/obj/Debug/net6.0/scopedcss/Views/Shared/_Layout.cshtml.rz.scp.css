@@ -39,10 +39,42 @@ button.accept-policy[b-vpkz4e1jaw] {
   line-height: inherit;
 }
 
-.footer[b-vpkz4e1jaw] {
-  position: absolute;
+body[b-vpkz4e1jaw] {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin-top: 80px;
+}
+
+.navbar[b-vpkz4e1jaw] {
+  background-color: #007bff; /* Bootstrap primary color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand[b-vpkz4e1jaw], .nav-link[b-vpkz4e1jaw] {
+  color: #fff !important;
+}
+
+.navbar-brand:hover[b-vpkz4e1jaw], .nav-link:hover[b-vpkz4e1jaw] {
+  color: #d4d4d4 !important;
+}
+
+.container1[b-vpkz4e1jaw] {
+  padding: 15px;
+}
+
+main[b-vpkz4e1jaw] {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer[b-vpkz4e1jaw] {
+  text-align: center;
+  padding: 5px 0;
+  color: rgb(180, 80, 252);
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
 }

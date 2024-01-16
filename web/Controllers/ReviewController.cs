@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
 using System.Threading.Tasks;
+using web.ViewModels;
 
 namespace web.Controllers
 {
@@ -18,31 +19,29 @@ namespace web.Controllers
         // GET: Review
         public async Task<IActionResult> Index()
         {
-            var reviews = await _context.Review.ToListAsync();
-            return View(reviews);
+            var viewModel = new ReviewViewModel
+            {
+                Reviews = await _context.Review.ToListAsync(),
+                NewReview = new Review()
+            };
+
+            return View(viewModel);
         }
 
-        // GET: Review/Create
-        public IActionResult Create()
-        {
-            
-            return View();
-        }
-
-        // POST: Review/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewID,WorkerID,Description,Grade")] Review review)
+        public async Task<IActionResult> Create(ReviewViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(review);
+            
+                _context.Review.Add(viewModel.NewReview);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Review added successfully.";
                 return RedirectToAction(nameof(Index));
-            }
-            return View(review);
+            
+            TempData["ErrorMessage"] = "Error adding review. Please check your input.";
+            // If not valid, reload the Index view with existing reviews and the new review data
+            viewModel.Reviews = await _context.Review.ToListAsync();
+            return View("Index", viewModel);
         }
-
-        // Additional actions for Edit and Delete can be added similarly.
     }
 }

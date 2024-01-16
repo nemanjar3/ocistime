@@ -510,3 +510,7 @@ C:\Users\nexon\OneDrive\Desktop\ocistime\web\obj\Debug\net6.0\web.pdb
 C:\Users\nexon\OneDrive\Desktop\ocistime\web\obj\Debug\net6.0\web.genruntimeconfig.cache
 C:\Users\nexon\OneDrive\Desktop\ocistime\web\obj\Debug\net6.0\ref\web.dll
 C:\Users\nexon\OneDrive\Desktop\ocistime\web\obj\Debug\net6.0\web.sourcelink.json
+c:\Users\nexon\OneDrive\Desktop\ocistime\web\bin\Debug\net6.0\Microsoft.OpenApi.dll
+c:\Users\nexon\OneDrive\Desktop\ocistime\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+c:\Users\nexon\OneDrive\Desktop\ocistime\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+c:\Users\nexon\OneDrive\Desktop\ocistime\web\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -39,10 +39,42 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-  position: absolute;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin-top: 80px;
+}
+
+.navbar {
+  background-color: #007bff; /* Bootstrap primary color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand, .nav-link {
+  color: #fff !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: #d4d4d4 !important;
+}
+
+.container1 {
+  padding: 15px;
+}
+
+main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 5px 0;
+  color: rgb(180, 80, 252);
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
 }
