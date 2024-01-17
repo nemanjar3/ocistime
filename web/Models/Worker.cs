@@ -18,7 +18,7 @@ namespace web.Models
         public int JobID { get; set; }
 
         // Navigation property for the Jobs table
-        public Job Job { get; set; }
+        public Job? Job { get; set; }
 
         // Uncomment and modify according to your related entities
         // public ICollection<Enrollment> Enrollments { get; set; }

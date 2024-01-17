@@ -47,7 +47,7 @@ body[b-vpkz4e1jaw] {
 }
 
 .navbar[b-vpkz4e1jaw] {
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #007bff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,7 +73,7 @@ main[b-vpkz4e1jaw] {
 footer[b-vpkz4e1jaw] {
   text-align: center;
   padding: 5px 0;
-  color: rgb(180, 80, 252);
+  color: rgb(68, 68, 68);
   position: fixed;
   left: 0;
   bottom: 0;

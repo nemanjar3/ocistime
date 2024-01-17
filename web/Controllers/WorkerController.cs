@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace web.Controllers
 {
@@ -19,6 +21,7 @@ namespace web.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Worker
         public async Task<IActionResult> Index()
         {
