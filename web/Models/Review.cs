@@ -23,6 +23,6 @@ namespace web.Models
 
 
         // Navigation property to User/Worker
-        public Worker Worker { get; set; } // Rename to Worker if that's the actual entity
+        public Worker? Worker { get; set; } // Rename to Worker if that's the actual entity
     }
 }

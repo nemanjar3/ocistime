@@ -4,6 +4,7 @@ using web.Data;
 using web.Models;
 using System.Threading.Tasks;
 using web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace web.Controllers
 {
@@ -16,6 +17,7 @@ namespace web.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: Review
         public async Task<IActionResult> Index()
         {

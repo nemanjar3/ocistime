@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj": {}
+    "C:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj": {}
   },
   "projects": {
-    "c:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj": {
+    "C:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj",
+        "projectUniqueName": "C:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj",
         "projectName": "web",
-        "projectPath": "c:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj",
+        "projectPath": "C:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\web.csproj",
         "packagesPath": "C:\\Users\\nexon\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\obj\\",
+        "outputPath": "C:\\Users\\nexon\\OneDrive\\Desktop\\ocistime\\web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nexon\\AppData\\Roaming\\NuGet\\NuGet.Config"

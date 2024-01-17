@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using web.Models;
 using System.Linq; // Needed for LINQ queries
 using Microsoft.EntityFrameworkCore;
-using web.Data; // Needed for Entity Framework
+using web.Data;
+using Microsoft.AspNetCore.Authorization; // Needed for Entity Framework
 
 namespace web.Controllers;
 
@@ -16,11 +17,14 @@ public class SearchController : Controller
         _context = context;
     }
 
+
+    [Authorize]
     public IActionResult Search()
     {
         return View();
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> SearchResults(string jobName)
     {
