@@ -1,0 +1,148 @@
+@model web.ViewModels.ApplicationViewModel
+
+@{
+    ViewData["Title"] = "Applicaitons";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h1 class="title">Application Form for Worker Position</h1>
+
+<form asp-controller="Applications" asp-action="Create" method="post" class="application-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="form-group">
+        <label asp-for="NewApplication.FirstMidName">First Name:</label>
+        <input asp-for="NewApplication.FirstMidName" class="form-control" />
+        <span asp-validation-for="NewApplication.FirstMidName" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="NewApplication.LastName">Last Name:</label>
+        <input asp-for="NewApplication.LastName" class="form-control" />
+        <span asp-validation-for="NewApplication.LastName" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="NewApplication.Mail">Email:</label>
+        <input asp-for="NewApplication.Mail" class="form-control" />
+        <span asp-validation-for="NewApplication.Mail" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="NewApplication.PhoneNumber">Phone Number:</label>
+        <input asp-for="NewApplication.PhoneNumber" class="form-control" />
+        <span asp-validation-for="NewApplication.PhoneNumber" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="NewApplication.JobID">Job:</label>
+        <select asp-for="NewApplication.JobID" asp-items="Model.Jobs" class="form-control">
+        <option value="">-- Select Job --</option>
+        </select>
+        <span asp-validation-for="NewApplication.JobID" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="submit-button">Submit Application</button>
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    .container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        align-self: center;
+    }
+
+    .title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .application-form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .submit-button {
+        display: block;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.2s;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+
+    .text-danger {
+        color: #a94442;
+        font-size: 14px;
+    }
+</style>

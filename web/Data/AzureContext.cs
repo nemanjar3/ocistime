@@ -14,6 +14,9 @@ namespace web.Data
         public DbSet<Worker>? Worker { get; set; }
         public DbSet<Review>? Review { get; set; }
 
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Application> Applications { get; set; }
+
 
 
 

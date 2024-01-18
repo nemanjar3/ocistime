@@ -14,7 +14,7 @@ namespace web.Models
         public string? LastName { get; set; }
         public string? FirstMidName { get; set; }
         public string? Mail { get; set; }
-        public string? Password { get; set; }
+        public string? PhoneNumber { get; set; }
         public int JobID { get; set; }
 
         // Navigation property for the Jobs table

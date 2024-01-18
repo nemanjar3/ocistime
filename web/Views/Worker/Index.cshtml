@@ -53,10 +53,6 @@
 
 <h1>Workers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
 <div class="worker-cards-container">
     @foreach (var item in Model) {
         <div class="worker-card">
@@ -66,11 +62,10 @@
                 <div class="worker-email">@item.WorkerID</div>
                 <div class="worker-job">@item.Job.JobName</div>
                 <div class="worker-email">@item.Mail</div>
+                <div class="worker-email">@item.PhoneNumber</div>
             </div>
             <div class="worker-actions">
-                <a asp-action="Edit" asp-route-id="@item.WorkerID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WorkerID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WorkerID">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.WorkerID">Details</a>
             </div>
         </div>
     }
