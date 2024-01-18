@@ -4,7 +4,10 @@ using web.Models;
 using System.Linq; // Needed for LINQ queries
 using Microsoft.EntityFrameworkCore;
 using web.Data;
-using Microsoft.AspNetCore.Authorization; // Needed for Entity Framework
+using Microsoft.AspNetCore.Authorization;
+using web.ViewModels; // Needed for Entity Framework
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace web.Controllers;
 
@@ -19,19 +22,23 @@ public class SearchController : Controller
 
 
     [Authorize]
-    public IActionResult Search()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var viewModel = new SearchViewModel
+        {
+            Jobs = new SelectList(await _context.Jobs.ToListAsync(), "JobID", "JobName")
+        };
+        return View(viewModel);
     }
 
     [Authorize]
     [HttpGet]
-    public async Task<IActionResult> SearchResults(string jobName)
+    public async Task<IActionResult> SearchResults(int SelectedJobID)
     {
         var workers = await _context.Worker
-                            .Include(w => w.Job) // Eager load the Job data
-                            .Where(w => EF.Functions.Like(w.Job.JobName, $"%{jobName}%")) // Filter based on JobName
-                            .ToListAsync();
+                                .Include(w => w.Job) // Eager load the Job data
+                                .Where(w => w.Job.JobID == SelectedJobID) // Filter based on JobID
+                                .ToListAsync();
 
         return View("SearchResults", workers); // Return the search results to the SearchResults view
     }

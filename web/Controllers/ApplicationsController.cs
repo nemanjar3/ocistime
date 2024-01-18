@@ -17,6 +17,7 @@ namespace web.Controllers
         {
             _context = context;
         }
+        
         [Authorize]
         // GET: Applications
         public IActionResult Index()
@@ -35,7 +36,6 @@ namespace web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ApplicationViewModel application)
         {
-            
                 _context.Applications.Add(application.NewApplication);
                 await _context.SaveChangesAsync();
                 

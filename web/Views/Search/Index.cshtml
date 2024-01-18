@@ -1,13 +1,9 @@
- @{
+@model web.ViewModels.SearchViewModel
+
+@{
     ViewData["Title"] = "Search";
 }
 
-
-</style>
-
-@{
-    ViewBag.Title = "Your Local Services";
-}
 
 <head>
     <meta charset="UTF-8">
@@ -73,7 +69,9 @@
     <div class="search-container">
         <h2>Ocisti.me</h2>
         <form asp-controller="Search" asp-action="SearchResults" method="get">
-            <input type="text" name="JobName" placeholder="Enter the wanted job" />
+            <select asp-for="SelectedJobID" asp-items="Model.Jobs" class="form-control">
+                <option value="">-- Select Job --</option>
+            </select>
             <button type="submit">Search</button>
         </form>
     </div>
