@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema; // Import this namespace
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace web.Models
@@ -20,7 +20,5 @@ namespace web.Models
         // Navigation property for the Jobs table
         public Job? Job { get; set; }
 
-        // Uncomment and modify according to your related entities
-        // public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace web.Models
         public string FirstMidName { get; set; }
         public string LastName { get; set; }
         public string Mail { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public int JobID { get; set; } // Foreign key reference to the Jobs table
 
     // Navigation property for the related Job entity

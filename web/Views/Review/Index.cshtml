@@ -35,16 +35,24 @@
 
 <form asp-controller="Review" asp-action="Create" method="post" class="review-form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <!-- WorkerID Dropdown -->
     <div class="form-group">
-        <label asp-for="NewReview.WorkerID">Worker ID:</label>
-        <input asp-for="NewReview.WorkerID" class="form-control" />
-        <span asp-validation-for="NewReview.WorkerID" class="text-danger"></span>
+        <label asp-for="SelectedWorkerID">Worker:</label>
+        <select asp-for="SelectedWorkerID" asp-items="Model.Workers" class="form-control">
+            <option value="">-- Select Worker --</option>
+        </select>
+        <span asp-validation-for="SelectedWorkerID" class="text-danger"></span>
     </div>
+
+    <!-- Description Textarea -->
     <div class="form-group">
         <label asp-for="NewReview.Description">Description:</label>
         <textarea asp-for="NewReview.Description" class="form-control"></textarea>
         <span asp-validation-for="NewReview.Description" class="text-danger"></span>
     </div>
+
+    <!-- Grade Dropdown -->
     <div class="form-group">
         <label asp-for="NewReview.Grade">Grade (1-5):</label>
         <select asp-for="NewReview.Grade" class="form-control">
@@ -54,10 +62,13 @@
             }
         </select>
         <span asp-validation-for="NewReview.Grade" class="text-danger"></span>
-</div>
-<button type="submit" class="submit-button">Submit Review</button>
+    </div>
 
+    <!-- Submit Button -->
+    <button type="submit" class="submit-button">Submit Review</button>
 </form>
+
+<!-- Scripts for Validation -->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
