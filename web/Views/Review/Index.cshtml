@@ -36,7 +36,6 @@
 <form asp-controller="Review" asp-action="Create" method="post" class="review-form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     
-    <!-- WorkerID Dropdown -->
     <div class="form-group">
         <label asp-for="SelectedWorkerID">Worker:</label>
         <select asp-for="SelectedWorkerID" asp-items="Model.Workers" class="form-control">
@@ -45,14 +44,12 @@
         <span asp-validation-for="SelectedWorkerID" class="text-danger"></span>
     </div>
 
-    <!-- Description Textarea -->
     <div class="form-group">
         <label asp-for="NewReview.Description">Description:</label>
         <textarea asp-for="NewReview.Description" class="form-control"></textarea>
         <span asp-validation-for="NewReview.Description" class="text-danger"></span>
     </div>
 
-    <!-- Grade Dropdown -->
     <div class="form-group">
         <label asp-for="NewReview.Grade">Grade (1-5):</label>
         <select asp-for="NewReview.Grade" class="form-control">
@@ -64,50 +61,88 @@
         <span asp-validation-for="NewReview.Grade" class="text-danger"></span>
     </div>
 
-    <!-- Submit Button -->
     <button type="submit" class="submit-button">Submit Review</button>
 </form>
 
-<!-- Scripts for Validation -->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
 
 <style>
     .title {
-        font-size: 24px;
-        color: #333;
-        margin-bottom: 20px;
-    }
-    .reviews-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    .review-card {
-        border: 1px solid #ddd;
+        font-size: 2.625rem;
+        color: #ffffff;
+        background-color: #4A90E2;
+        padding: 0.5rem 1rem;
+        margin: 0;
         border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        width: calc(33% - 10px);
-        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-sizing: border-box; 
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 14.5%;
     }
-    .review-info, .review-grade {
-        font-size: 16px;
-        margin-bottom: 5px;
+
+    .reviews-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
     }
+
+    .review-info{
+        color: #2C3E50;
+    }
+
+    .review-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-title {
+        font-size: 18px;
+        color: #4A90E2; /* Blue color to match the theme */
+        margin-bottom: 0.5rem;
+    }
+
     .review-description {
-        margin-bottom: 10px;
         font-style: italic;
+        color: #707070; /* Gray for the descriptions */
+        margin-bottom: 0.5rem;
     }
+
+    .review-grade {
+        font-weight: bold;
+        color: #333333; /* Darker text for importance */
+    }
+
     .divider {
-        margin-top: 30px;
-        margin-bottom: 30px;
-        border-top: 1px solid #ddd;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-top: 2px solid #ECF0F1; /* Light gray border */
     }
+
     .review-form {
-        max-width: 600px;
-        margin: auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-top: 25px;
+        margin-bottom: 400px;
+        margin-left: 400px;
+        margin-right: 400px;
+        max-width: 700px;
     }
     .form-group {
         margin-bottom: 15px;
@@ -120,14 +155,13 @@
     }
     .submit-button {
         background-color: #4CAF50;
-        color:
-    white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 50px;
+        color:white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 5px;
     }
     .submit-button:hover {
     background-color: #45a049;
