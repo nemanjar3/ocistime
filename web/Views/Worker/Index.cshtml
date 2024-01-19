@@ -4,18 +4,38 @@
     ViewData["Title"] = "Workers";
 }
 <style>
+    .title {
+        font-size: 2.625rem;
+        color: #ffffff;
+        background-color: #4A90E2;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-sizing: border-box; 
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 14.5%;
+    }
     .worker-cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
     }
     .worker-card {
-        border: 1px solid #ddd;
+        background: #ffffff;
+        border: none;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        width: 250px;
-        padding: 15px;
-        text-align: center;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .worker-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
     .worker-photo {
         width: 100%;
@@ -28,30 +48,28 @@
     }
     .worker-name {
         font-size: 18px;
+        color: #4A90E2; /* Blue color to match the theme */
+        margin-bottom: 0.5rem;
         font-weight: bold;
     }
+    .worker-email,
     .worker-job {
-        font-size: 16px;
-        color: #555;
-    }
-    .worker-email {
         font-size: 14px;
-        color: #777;
+        color: #707070; /* Gray for the details */
+        margin-bottom: 0.5rem;
     }
     .worker-actions a {
         font-size: 14px;
         color: #007bff;
         text-decoration: none;
+        margin-right: 10px;
     }
     .worker-actions a:hover {
         text-decoration: underline;
     }
-    button:hover {
-            background-color: #0056b3;
-    }
 </style>
 
-<h1>Workers</h1>
+<h1 class="title">Workers</h1>
 
 <div class="worker-cards-container">
     @foreach (var item in Model) {
