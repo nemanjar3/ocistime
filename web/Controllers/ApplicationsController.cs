@@ -42,5 +42,63 @@ namespace web.Controllers
                 TempData["SuccessMessage"] = "Application submitted successfully!";
                 return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public IActionResult Accept(int id)
+        {
+            var application = _context.Applications.FirstOrDefault(a => a.ApplicationID == id);
+            if (application != null)
+            {
+                // Create a new Worker entry
+                var worker = new Worker
+                {
+                    FirstMidName = application.FirstMidName,
+                    LastName = application.LastName,
+                    Mail = application.Mail,
+                    PhoneNumber = application.PhoneNumber,
+                    JobID = application.JobID
+                };
+
+                // Add the new worker to the Workers table
+                _context.Worker.Add(worker);
+
+                // Remove the application from the Applications table
+                _context.Applications.Remove(application);
+
+                // Save changes to the database
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Application accepted and moved to Workers.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Application not found.";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Deny(int id)
+        {
+            var application = _context.Applications.FirstOrDefault(a => a.ApplicationID == id);
+            if (application != null)
+            {
+                // Remove the application from the Applications table
+                _context.Applications.Remove(application);
+
+                // Save changes to the database
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Application denied and deleted.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Application not found.";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+    
     }
 }
