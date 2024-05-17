@@ -4,9 +4,8 @@
     ViewData["Title"] = "Search Results";
 }
 <style>
-    <style>
+    /* Style definitions */
     .title-container {
-        background-color: #4A90E2; /* Blue background */
         color: white; /* White text color */
         padding: 1rem;
         margin-bottom: 2rem;
@@ -14,7 +13,6 @@
         align-items: center;
         justify-content: flex-start; /* Aligns title to the left */
     }
-
 
     .title {
         background-color: #4A90E2;
@@ -87,12 +85,10 @@
         transition: background-color 0.2s;
         margin-top: 6.7rem;
     }
-    .new-search-btn:hover{
+    .new-search-btn:hover {
         background-color: #0056b3;
-
     }
 </style>
-
 
 <div class="title-container">
     <h1 class="title">Search results</h1>
@@ -112,6 +108,11 @@
                     <div class="worker-email">@worker.Mail</div>
                     <div class="worker-email">@worker.PhoneNumber</div>
                 </div>
+                <div class="worker-actions">
+                    <form method="post" action="@Url.Action("Book", "Booking", new { workerId = worker.WorkerID })" class="booking-form">
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </form>
+                </div>
             </div>
         }
     </div>
@@ -122,3 +123,30 @@ else
 }
 
 <button type="button" onclick="location.href='@Url.Action("Index", "Search")'" class="new-search-btn">New Search</button>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle form submissions with AJAX
+            $('.booking-form').on('submit', function (event) {
+                event.preventDefault();
+                var form = $(this);
+                var formAction = form.attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: formAction,
+                    data: form.serialize(),
+                    success: function () {
+                        alert('Booking successful!');
+                    },
+                    error: function () {
+                        alert('An error occurred during booking.');
+                    }
+                });
+            });
+        });
+    </script>
+}

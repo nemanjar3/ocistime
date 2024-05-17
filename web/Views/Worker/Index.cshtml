@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Workers";
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
     .title {
         font-size: 2.625rem;
@@ -67,22 +70,69 @@
     .worker-actions a:hover {
         text-decoration: underline;
     }
+    .book-now-button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #4A90E2;
+        color: white !important;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+        
+    }
+    .book-now-button:hover {
+        background-color: #357ABD;
+        color: white;        
+    }
 </style>
 
 <h1 class="title">Workers</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
 <div class="worker-cards-container">
     @foreach (var item in Model) {
         <div class="worker-card">
-            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo"/> <!-- Replace with actual image path -->
+            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo"/> 
             <div class="worker-info">
                 <div class="worker-name">@item.FirstMidName @item.LastName</div>
-                <div class="worker-email">@item.WorkerID</div>
+                <div class="worker-email">Worker ID: @item.WorkerID</div>
                 <div class="worker-job">@item.Job.JobName</div>
                 <div class="worker-email">@item.Mail</div>
                 <div class="worker-email">@item.PhoneNumber</div>
+                <div class="worker-actions">
+                    <a href="#" class="book-now-button" onclick="bookWorker(@item.WorkerID)">Book Now</a>
+                </div>
+
             </div>
         </div>
     }
 </div>
+
+<script>
+function bookWorker(workerId) {
+    $.ajax({
+        type: "POST",
+        url: "/Booking/Book",
+        data: { workerId: workerId },
+        success: function () {
+            alert("Booked successfully!");
+            TempData.Clear();
+        },
+        error: function () {
+            alert("An error occurred while booking.");
+        }
+    });
+}
+</script>
 

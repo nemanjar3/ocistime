@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using web.ViewModels;
 
 
 namespace web.Controllers

@@ -17,8 +17,7 @@ namespace web.Data
         public DbSet<Job>? Jobs { get; set; }
         public DbSet<Application> Applications { get; set; }
 
-
-
+        public DbSet<Booking> Bookings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,14 +26,8 @@ namespace web.Data
             modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             modelBuilder.Entity<Worker>().ToTable("Worker");
             modelBuilder.Entity<Review>().ToTable("Review");
-           
-
+            modelBuilder.Entity<Booking>().ToTable("Booking");
         }
-
-
-
-
-
         public DbSet<web.Models.Job>? Job { get; set; }
     }
 }

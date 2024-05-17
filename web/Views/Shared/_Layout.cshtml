@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Applications" asp-action="Index">Apply</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Booking" asp-action="MyBookings">My Bookings</a>
+                        </li>
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
@@ -40,7 +43,7 @@
         </nav>
     </header>
     <div class="container1">
-            @RenderBody()
+        @RenderBody()
     </div>
 
     <footer>
@@ -51,7 +54,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
    
-@await RenderSectionAsync("Scripts", required: false)
-
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

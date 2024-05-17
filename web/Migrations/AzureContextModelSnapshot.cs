@@ -11,7 +11,7 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(AzureContext))]
-    partial class OcistimeContextModelSnapshot : ModelSnapshot
+    partial class AzureContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -1,0 +1,69 @@
+@model IEnumerable<web.Models.Booking>
+
+@{
+    ViewData["Title"] = "My Bookings";
+}
+<style>
+    .title {
+        font-size: 2.625rem;
+        color: #ffffff;
+        background-color: #4A90E2;
+        padding: 0.5rem 1rem;
+        margin: 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-sizing: border-box; 
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 14.5%;
+    }
+    .booking-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .booking-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .booking-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    .booking-info {
+        margin-top: 10px;
+    }
+    .worker-name {
+        font-size: 18px;
+        color: #4A90E2; 
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    .booking-date,
+    .worker-job {
+        font-size: 14px;
+        color: #707070; 
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+<h1 class="title">My Bookings</h1>
+
+<div class="booking-cards-container">
+    @foreach (var booking in Model) {
+        <div class="booking-card">
+            <div class="booking-info">
+                <div class="worker-name">@booking.Worker.FirstMidName @booking.Worker.LastName</div>
+                <div class="worker-job">@booking.Worker.Job.JobName</div>
+                <div class="booking-date">Booking Date: @booking.BookingDate.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+    }
+</div>
