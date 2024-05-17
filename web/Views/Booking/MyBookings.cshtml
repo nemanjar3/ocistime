@@ -17,7 +17,7 @@
         box-sizing: border-box; 
         margin-top: 20px;
         margin-bottom: 20px;
-        width: 14.5%;
+        width: 16.5%;
     }
     .booking-cards-container {
         display: grid;
@@ -54,6 +54,18 @@
         color: #707070; 
         margin-bottom: 0.5rem;
     }
+    .delete-button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+    .delete-button:hover {
+        background-color: #c0392b;
+    }
 </style>
 
 <h1 class="title">My Bookings</h1>
@@ -68,6 +80,10 @@
                 <div class="booking-time">Booking Time: @booking.BookingTime.ToString(@"hh\:mm")</div>
                 <div class="payment-method">Payment Method: @booking.PaymentMethod</div>
             </div>
+            <form method="post" action="@Url.Action("Delete", "Booking", new { id = booking.BookingID })">
+                <button type="submit" class="delete-button">Delete This Booking</button>
+            </form>
         </div>
     }
 </div>
+

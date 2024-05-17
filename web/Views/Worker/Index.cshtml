@@ -92,47 +92,65 @@
 
 <h1 class="title">Workers</h1>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-
 <div class="worker-cards-container">
-    @foreach (var item in Model) {
+    @foreach (var worker in Model)
+    {
         <div class="worker-card">
-            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo"/> 
+            <img src="@Url.Content("https://www.totalmobile.co.uk/wp-content/uploads/2023/03/mobile-worker-header.jpg")" alt="Worker Photo" class="worker-photo" />
             <div class="worker-info">
-                <div class="worker-name">@item.FirstMidName @item.LastName</div>
-                <div class="worker-email">Worker ID: @item.WorkerID</div>
-                <div class="worker-job">@item.Job.JobName</div>
-                <div class="worker-email">@item.Mail</div>
-                <div class="worker-email">@item.PhoneNumber</div>
-                <div class="worker-actions">
-                    <a href="#" class="book-now-button" onclick="bookWorker(@item.WorkerID)">Book Now</a>
-                </div>
-
+                <div class="worker-name">@worker.FirstMidName @worker.LastName</div>
+                <div class="worker-email">Worker ID: @worker.WorkerID</div>
+                <div class="worker-job">@worker.Job.JobName</div>
+                <div class="worker-email">@worker.Mail</div>
+                <div class="worker-email">@worker.PhoneNumber</div>
+            </div>
+            <div class="worker-actions">
+                <form method="post" action="@Url.Action("Book", "Booking", new { workerId = worker.WorkerID })" class="booking-form">
+                    <div class="form-group">
+                        <label for="bookingDate">Booking Date</label>
+                        <input type="date" name="bookingDate" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingTime">Booking Time</label>
+                        <input type="time" name="bookingTime" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method</label>
+                        <select name="paymentMethod" class="form-control" required>
+                            <option value="Cash">Cash</option>
+                            <option value="Card">Card</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="book-now-button">Book Now</button>
+                </form>
             </div>
         </div>
     }
 </div>
 
-<script>
-function bookWorker(workerId) {
-    $.ajax({
-        type: "POST",
-        url: "/Booking/Book",
-        data: { workerId: workerId },
-        success: function () {
-            alert("Booked successfully!");
-            TempData.Clear();
-        },
-        error: function () {
-            alert("An error occurred while booking.");
-        }
-    });
-}
-</script>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle form submissions with AJAX
+            $('.booking-form').on('submit', function (event) {
+                event.preventDefault();
+                var form = $(this);
+                var formAction = form.attr('action');
 
+                $.ajax({
+                    type: 'POST',
+                    url: formAction,
+                    data: form.serialize(),
+                    success: function () {
+                        alert('Booking successful!');
+                        location.reload(); // Optionally, refresh the page after booking
+                    },
+                    error: function () {
+                        alert('An error occurred during booking.');
+                    }
+                });
+            });
+        });
+    </script>
+}
