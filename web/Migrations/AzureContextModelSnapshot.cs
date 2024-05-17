@@ -202,6 +202,7 @@ namespace web.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -274,6 +275,13 @@ namespace web.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<TimeSpan>("BookingTime")
+                        .HasColumnType("time");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -305,7 +313,7 @@ namespace web.Migrations
 
                     b.HasKey("JobID");
 
-                    b.ToTable("Job", (string)null);
+                    b.ToTable("Jobs");
                 });
 
             modelBuilder.Entity("web.Models.Review", b =>
@@ -324,10 +332,16 @@ namespace web.Migrations
                     b.Property<int>("Grade")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("WorkerID")
                         .HasColumnType("int");
 
                     b.HasKey("ReviewID");
+
+                    b.HasIndex("UserID");
 
                     b.HasIndex("WorkerID");
 
@@ -447,11 +461,19 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Review", b =>
                 {
+                    b.HasOne("web.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("web.Models.Worker", "Worker")
                         .WithMany()
                         .HasForeignKey("WorkerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
 
                     b.Navigation("Worker");
                 });

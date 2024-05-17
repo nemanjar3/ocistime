@@ -14,6 +14,9 @@ namespace web.Models
         public int WorkerID { get; set; }
 
         [Required]
+        public string UserID { get; set; }  // Added UserID to track which user is making the review
+
+        [Required]
         [StringLength(500)]
         public string Description { get; set; }
 
@@ -21,8 +24,8 @@ namespace web.Models
         [Range(1, 5)]
         public int Grade { get; set; }
 
-
-        // Navigation property to User/Worker
-        public Worker? Worker { get; set; } // Rename to Worker if that's the actual entity
+        // Navigation properties
+        public Worker? Worker { get; set; }  // Navigation property to Worker
+        public ApplicationUser? User { get; set; }  // Navigation property to User
     }
 }

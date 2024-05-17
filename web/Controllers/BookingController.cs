@@ -20,7 +20,7 @@ namespace web.Controllers
 
         // POST: Booking/Book
         [HttpPost]
-        public async Task<IActionResult> Book(int workerId)
+        public async Task<IActionResult> Book(int workerId, DateTime bookingDate, TimeSpan bookingTime, string paymentMethod)
         {
             // Retrieve the worker from the database based on the provided workerId
             var worker = await _context.Worker.FindAsync(workerId); // Note: Ensure the DbSet is named Workers
@@ -29,7 +29,7 @@ namespace web.Controllers
             {
                 // If the worker doesn't exist, handle the error accordingly
                 TempData["ErrorMessage"] = "Worker not found.";
-                
+                return RedirectToAction("Index", "Search"); // Adjust redirection as necessary
             }
 
             // Now that you have the worker details, you can proceed with creating the booking
@@ -39,7 +39,9 @@ namespace web.Controllers
             {
                 WorkerID = workerId,
                 UserID = userId, // Use the currently logged-in user's ID
-                BookingDate = DateTime.Now // Set the booking date as needed
+                BookingDate = bookingDate,
+                BookingTime = bookingTime,
+                PaymentMethod = paymentMethod
             };
 
             // Add the booking to the context and save changes

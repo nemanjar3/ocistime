@@ -12,8 +12,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(AzureContext))]
-    [Migration("20240117222246_bilosta")]
-    partial class bilosta
+    [Migration("20240517145122_AddBookingDateTimeAndPaymentMethod")]
+    partial class AddBookingDateTimeAndPaymentMethod
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,6 +161,39 @@ namespace web.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("web.Models.Application", b =>
+                {
+                    b.Property<int?>("ApplicationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ApplicationID"), 1L, 1);
+
+                    b.Property<string>("FirstMidName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JobID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApplicationID");
+
+                    b.HasIndex("JobID");
+
+                    b.ToTable("Applications");
+                });
+
             modelBuilder.Entity("web.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -171,6 +204,7 @@ namespace web.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -232,6 +266,40 @@ namespace web.Migrations
                     b.ToTable("ApplicationUser", (string)null);
                 });
 
+            modelBuilder.Entity("web.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"), 1L, 1);
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("BookingTime")
+                        .HasColumnType("time");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WorkerID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingID");
+
+                    b.HasIndex("UserID");
+
+                    b.HasIndex("WorkerID");
+
+                    b.ToTable("Booking", (string)null);
+                });
+
             modelBuilder.Entity("web.Models.Job", b =>
                 {
                     b.Property<int>("JobID")
@@ -266,10 +334,16 @@ namespace web.Migrations
                     b.Property<int>("Grade")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("WorkerID")
                         .HasColumnType("int");
 
                     b.HasKey("ReviewID");
+
+                    b.HasIndex("UserID");
 
                     b.HasIndex("WorkerID");
 
@@ -296,7 +370,7 @@ namespace web.Migrations
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("WorkerID");
@@ -357,13 +431,51 @@ namespace web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("web.Models.Review", b =>
+            modelBuilder.Entity("web.Models.Application", b =>
                 {
+                    b.HasOne("web.Models.Job", "Job")
+                        .WithMany()
+                        .HasForeignKey("JobID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("web.Models.Booking", b =>
+                {
+                    b.HasOne("web.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("web.Models.Worker", "Worker")
                         .WithMany()
                         .HasForeignKey("WorkerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("Worker");
+                });
+
+            modelBuilder.Entity("web.Models.Review", b =>
+                {
+                    b.HasOne("web.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("web.Models.Worker", "Worker")
+                        .WithMany()
+                        .HasForeignKey("WorkerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
 
                     b.Navigation("Worker");
                 });
